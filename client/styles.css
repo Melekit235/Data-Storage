@@ -1,14 +1,11 @@
-/* Добавьте дополнительные стили здесь */
-
-/* Пример стилизации списка файлов */
-#fileList li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+body {
+  background-color: #f8f9fa;
 }
 
-#fileList li button {
-  margin-left: 10px;
+.container {
+  max-width: 600px;
+}
+
+.navbar {
+  margin-bottom: 20px;
 }

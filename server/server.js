@@ -1,8 +1,13 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
 const multer = require('multer');
 const path = require('path');
 const apiRoutes = require('./routes/api');
+
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
 
 // Настройка для хранения файлов
 const storage = multer.diskStorage({
@@ -20,6 +25,7 @@ const upload = multer({ storage: storage });
 
 app.use(express.json());
 app.use(express.static('client')); // Обслуживание статических файлов
+app.use(cookieParser());
 
 // Маршруты API
 app.use('/api', apiRoutes(upload));
