@@ -1,5 +1,3 @@
-// server/models/userModel.js
-
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 

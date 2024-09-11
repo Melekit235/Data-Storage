@@ -1,7 +1,6 @@
 const fs = require('fs');
 const path = require('path');
 
-// Загрузка файла
 exports.uploadFile = (req, res) => {
   if (!req.file) {
     return res.status(400).json({ error: 'File not uploaded' });
@@ -9,7 +8,6 @@ exports.uploadFile = (req, res) => {
   res.status(200).json({ message: 'File uploaded successfully', filename: req.file.filename });
 };
 
-// Получение списка файлов
 exports.getFiles = (req, res) => {
   fs.readdir('server/uploads', (err, files) => {
     if (err) {
@@ -19,7 +17,6 @@ exports.getFiles = (req, res) => {
   });
 };
 
-// Удаление файла
 exports.deleteFile = (req, res) => {
   const filename = req.params.filename;
   const filePath = path.join(__dirname, '../uploads', filename);
@@ -32,7 +29,6 @@ exports.deleteFile = (req, res) => {
   });
 };
 
-// Функция для скачивания файла
 exports.downloadFile = (req, res) => {
   const filename = req.params.filename;
   const filepath = path.join(__dirname, '../uploads', filename);

@@ -10,7 +10,6 @@ module.exports = (upload) => {
   router.post('/login', authController.login);
   router.post('/logout', authController.logout);
   
-  // Защищенные маршруты для работы с файлами
   router.post('/upload', authenticateJWT, upload.single('file'), fileController.uploadFile);
   router.get('/files', authenticateJWT, fileController.getFiles);
   router.delete('/files/:filename', authenticateJWT, fileController.deleteFile);

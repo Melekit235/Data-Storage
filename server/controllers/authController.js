@@ -1,12 +1,9 @@
-// server/controllers/authController.js
-
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const UserModel = require('../models/userModel');
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// Регистрация пользователя
 exports.register = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -18,7 +15,6 @@ exports.register = async (req, res) => {
   }
 };
 
-// Вход в систему
 exports.login = async (req, res) => {
   const { username, password } = req.body;
 
@@ -30,10 +26,8 @@ exports.login = async (req, res) => {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
 
-    // Генерация JWT токена
     const token = jwt.sign({ username: user.username }, JWT_SECRET, { expiresIn: '1h' });
 
-    // Отправляем токен как HttpOnly cookie
     res.cookie('token', token, { httpOnly: true, secure: false, sameSite: 'strict' });
     res.status(200).json({ message: 'Login successful' });
   } catch (error) {
@@ -41,7 +35,6 @@ exports.login = async (req, res) => {
   }
 };
 
-// Логаут
 exports.logout = (req, res) => {
   res.clearCookie('token');
   res.status(200).json({ message: 'Logged out successfully' });
